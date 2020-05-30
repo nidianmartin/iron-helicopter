@@ -9,21 +9,15 @@ class Bullet {
 
   draw() {
     this.ctx.beginPath();
-    this.ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
-    this.ctx.fill();
+    // TODO: draw circle
     this.ctx.closePath()
   }
 
   move() {
-    this.x += this.vx
+    // TODO: move circle
   }
 
   isVisible() {
-    return (
-      this.x < this.ctx.canvas.width &&
-      this.x > 0 &&
-      this.y > 0 &&
-      this.y < this.ctx.canvas.height
-    )
+    // TODO: is inside canvas?
   }
 }

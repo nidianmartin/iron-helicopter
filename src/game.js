@@ -10,32 +10,15 @@ class Game {
   }
 
   start() {
-    this._runAnimationLoop()
-  }
-
-  _runAnimationLoop() {
-    this.intervalId = setInterval(() => {
-      this._clear()
-      this._draw()
-      this._move()
-      this._addObstacle()
-      this._checkCollisions()
-      this._clearObstacles()
-
-      if (this.tick++ > 10000) {
-        this.tick = 0
-      }
-    }, 1000 / 60)
+    // TODO: loop. clear, draw, move, addObstacle, checkCollisions, clearObstacles
   }
 
   _clearObstacles() {
-    this.obstacles = this.obstacles.filter(o => o.isVisible())
+    // TODO: filter only visible obstacles (call o.isVisible())
   }
 
   _addObstacle() {
-    if (this.tick % 100) return
-
-    this.obstacles.push(new Obstacle(this.ctx))
+    // TODO: add new Obstacle every 100 ticks
   }
 
   _clear() {
@@ -43,26 +26,16 @@ class Game {
   }
 
   _draw() {
-    this.bg.draw()
-    this.helicopter.draw()
-    this.obstacles.forEach(o => o.draw())
+    // TODO: draw everything
   }
 
   _move() {
-    this.bg.move()
-    this.helicopter.move()
-    this.obstacles.forEach(o => o.move())
+    // TODO: move everything
   }
 
   _checkCollisions() {
-    const col = (
-      this.obstacles.some(o => o.collide(this.helicopter)) ||
-      this.helicopter.isFloor()
-    )
-
-    if (col) {
-      this._gameOver()
-    }
+    // TODO: check helicopter on floor?
+    // TODO: iterate obstacles. check colX and colY
   }
 
   _gameOver() {
