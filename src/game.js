@@ -15,16 +15,24 @@ class Game {
       this._clear()
       this._draw()
       this._move()
-      //this._addObstacle()
+      this._addObstacle()
+      this._clearObstacles()
+      this._checkCollisions()
     }, 1000 / 60)
   }
 
   _clearObstacles() {
     // TODO: filter only visible obstacles (call o.isVisible())
+    this.obstacles = this.obstacles.filter((obst) => obst.isVisible())
   }
 
   _addObstacle() {
     // TODO: add new Obstacle every 100 ticks
+    if (this.tick++ === 100) {
+      this.tick = 0
+      this.obstacles.push(new Obstacle(ctx))
+    }
+    
   }
 
   _clear() {
@@ -34,16 +42,27 @@ class Game {
   _draw() {
     this.bg.draw()
     this.helicopter.draw()
+    this.obstacles.forEach((obs) => {
+      obs.draw()
+    })
   }
 
   _move() {
     this.bg.move()
     this.helicopter.move()
+    this.obstacles.forEach((obs) => {
+      obs.move()
+    })
   }
 
   _checkCollisions() {
     // TODO: check helicopter on floor?
+    if (this.helicopter.isFloor()) {
+      this._gameOver()
+    }
     // TODO: iterate obstacles. check colX and colY
+ 
+
   }
 
   _gameOver() {
