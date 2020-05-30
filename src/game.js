@@ -75,13 +75,27 @@ class Game {
   _checkBullet() {
     this.helicopter.weapon.bullets.forEach(b => {
       this.obstacles = this.obstacles.filter(o => {
-        const colisionX = b.x >= o.x
-        const colisionY = b.y < o.y + o.h && b.y > o.y + o.h
-        if (!colisionX && !colisionY) {
-          return o
+        const colisionUp = b.y < o.y + o.h && b.x >= o.x;
+        const colisionDown = b.y > o.y && b.x >= o.x;
+        let colision = 0;
+
+        if(o.y === 0) {
+          colision = colisionUp;
+        } else {
+          colision = colisionDown;
         }
+
+        if (!colision) {
+          this.helicopter.weapon.bullets = this.helicopter.weapon.bullets.filter(bullet =>  {
+            return bullet !== b;
+          })
+          return o;
+         }
+
       })
+      
     })
+    
   }
 
   _gameOver() {
