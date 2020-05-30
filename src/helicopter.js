@@ -55,21 +55,35 @@ class Helicopter {
     // if (this.img.frameIndex++ === 4) {
     //   this.img.frameIndex = 0
     // }
+    this.vy += this.ay;
     this.vy += this.g;
+    this.vx += this.ax;
+    
     this.y += this.vy;
+    this.x += this.vx;
 
     if(this.y + this.h >= this.ctx.canvas.height) {
         this.y = this.ctx.canvas.height - this.h;
+    }
+
+    if(this.y <= 0) {
+      this.y = 0;
     }
 
   }
 
   _setListeners() {
     document.addEventListener('keydown', e => {
+      if(e.keyCode === UP) {
+        this.ay = -0.2
+      }
       // TODO
     })
 
     document.addEventListener('keyup', e => {
+      if(e.keyCode === UP) {
+        this.ay = 0
+      }
       // TODO
     })
   }
