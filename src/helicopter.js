@@ -55,6 +55,13 @@ class Helicopter {
     // if (this.img.frameIndex++ === 4) {
     //   this.img.frameIndex = 0
     // }
+    this.vy += this.g;
+    this.y += this.vy;
+
+    if(this.y + this.h >= this.ctx.canvas.height) {
+        this.y = this.ctx.canvas.height - this.h;
+    }
+
   }
 
   _setListeners() {
