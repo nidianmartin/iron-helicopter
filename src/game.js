@@ -18,6 +18,7 @@ class Game {
       this._addObstacle()
       this._clearObstacles()
       this._checkCollisions()
+      this._checkBullet()
     }, 1000 / 60)
   }
 
@@ -61,8 +62,27 @@ class Game {
       this._gameOver()
     }
     // TODO: iterate obstacles. check colX and colY
- 
+    const h = this.helicopter
+    this.obstacles.forEach(o => {
+      const colisionX = h.x + h.w > o.x && h.x < o.x + o.w
+      const colisionY = h.y + h.h > o.y && h.y < o.y + o.h
+      if (colisionX && colisionY) {
+        this._gameOver()
+      }
+    })
+  }
 
+  _checkBullet() {
+    this.helicopter.weapon.bullets.forEach(b => {
+      this.obstacles = this.obstacles.filter(o => {
+        const colisionX = b.x === o.x
+        const colisionY = b.y > o.y && b.y < o.y + o.h
+        if (!colisionX && !colisionY) {
+          return o
+        }
+      })
+      
+    })
   }
 
   _gameOver() {
