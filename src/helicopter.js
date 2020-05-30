@@ -15,7 +15,7 @@ class Helicopter {
     this.vy = 0
     this.ay = 0
     this.ax = 0
-    this.g = 0.1
+    this.g = 0
 
     this.img = new Image()
     this.img.src = "https://2.bp.blogspot.com/-P6ZbLE-rnFM/WPTQh65UtMI/AAAAAAAABF8/9iYl-cIUEtIhj2JDTixyqZNeBn183AdmQCLcB/s1600/helicopter-spritesheet.png"
@@ -47,7 +47,7 @@ class Helicopter {
   isFloor() {
     // TODO: check if floor
     return this.y + this.h >= this.ctx.canvas.height
-    
+
   }
 
   move() {

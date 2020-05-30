@@ -33,7 +33,7 @@ class Game {
       this.tick = 0
       this.obstacles.push(new Obstacle(ctx))
     }
-    
+
   }
 
   _clear() {
@@ -75,13 +75,12 @@ class Game {
   _checkBullet() {
     this.helicopter.weapon.bullets.forEach(b => {
       this.obstacles = this.obstacles.filter(o => {
-        const colisionX = b.x === o.x
-        const colisionY = b.y > o.y && b.y < o.y + o.h
+        const colisionX = b.x >= o.x
+        const colisionY = b.y < o.y + o.h && b.y > o.y + o.h
         if (!colisionX && !colisionY) {
           return o
         }
       })
-      
     })
   }
 
