@@ -29,6 +29,19 @@ class Helicopter {
 
   draw() {
     // TODO: draw helicopter image
+    this.ctx.drawImage(
+      this.img,
+      0, 
+      this.img.frameIndex * this.img.height / this.img.frames, 
+      this.img.width,
+      this.img.height / this.img.frames,
+      this.x,
+      this.y,
+      this.w,
+      this.h
+    )
+    
+    
 
     this.weapon.draw()
   }
@@ -39,6 +52,9 @@ class Helicopter {
 
   move() {
     // TODO: move
+    // if (this.img.frameIndex++ === 4) {
+    //   this.img.frameIndex = 0
+    // }
   }
 
   _setListeners() {
