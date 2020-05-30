@@ -35,7 +35,7 @@ class Background {
     this.x += this.vx
 
     if (this.x + this.w <= 0) {
-        this.x = 0
+      this.x = 0
     }
     // TODO: restart position if out of canvas
   }
